@@ -1,0 +1,33 @@
+clc;
+clear;
+
+%% init
+M=16;   % size of signal constellation
+k=log2(M);  % number of bits per symbol
+n=30000;    % number of bits to process
+numSamplePerSymbol=1;   % oversampling factor
+rng default  % use default random number generator
+
+dataIn=randi([0 1],n,1);    
+
+%% plot the 40 bitin in a stem plot
+stem(dataIn(1:40),'filled');
+title('Random Bits');
+xlabel('Bit Index');
+ylabel('Binary value');
+
+%% Convert the Binary Signal to integer-valued signal
+dataInMatrix = reshape(dataIn,length(dataIn)/k,k);
+dataSymbolsIn = bi2de(dataInMatrix);
+
+%% plot
+figure;
+stem(dataSymbolsIn(1:10));
+title('Random Symbols');
+xlabel('Symbol Index');
+ylabel('Integer Value');
+
+%% 
+
+
+
